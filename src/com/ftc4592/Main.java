@@ -1,8 +1,6 @@
-package com.testpak;
+package com.ftc4592;
 
-import com.testpak.loops.PrintLoop;
-
-import java.util.UUID;
+import com.ftc4592.loops.PrintLoop;
 
 public class Main {
 
