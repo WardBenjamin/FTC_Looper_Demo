@@ -3,6 +3,7 @@
  */
 package com.ftc4592;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -49,10 +50,13 @@ public class CrashTracker {
         logMarker(mark, null);
     }
 
-    // TODO: Make Android-compatible (FileWriter?)
     private static void logMarker(String mark, Throwable nullableException) {
+        // TODO: This should be replaced with `Environment.getExternalStorageDirectory()` to run on Android.
+        File sdCard = new File(System.getProperty("user.home"));
 
-        try (PrintWriter writer = new PrintWriter(new FileWriter("/home/lvuser/crash_tracking.txt", true))) {
+        File outputFile = new File(sdCard.getAbsolutePath() + "/ftc4592/crash_tracking.txt");
+
+        try (PrintWriter writer = new PrintWriter(new FileWriter(outputFile, true))) {
             writer.print(RUN_INSTANCE_UUID.toString());
             writer.print(", ");
             writer.print(mark);

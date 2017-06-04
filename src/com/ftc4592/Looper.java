@@ -26,7 +26,9 @@ public class Looper {
                     loops.forEach(Loop::onLoop);
                     dt = now - timestamp;
                     timestamp = now;
-                    System.out.println(Math.round(dt / 1e11) / 10f);
+                    // TODO: This should be commented out or removed to run on Android
+                    // Prints delta time in ms, rounds to one decimal place.
+                    System.out.println("Delta time: " + (Math.round(dt / 1e11) / 10f) + " ms");
                 }
             }
         }
