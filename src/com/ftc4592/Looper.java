@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
 public class Looper {
@@ -35,7 +36,11 @@ public class Looper {
     };
 
     public Looper() {
-        scheduler = Executors.newSingleThreadScheduledExecutor();
+        scheduler = Executors.newSingleThreadScheduledExecutor(runnable1 -> {
+            Thread thread = new Thread(runnable1);
+            thread.setPriority(Thread.MAX_PRIORITY);
+            return thread;
+        });
         running = false;
         loops = new ArrayList<>();
     }
